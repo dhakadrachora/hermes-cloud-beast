@@ -1,19 +1,19 @@
 services:
-  - type: worker
-    name: hermes-agent-24x7
-    env: docker
+  - type: web
+    name: hermes-cloud-beast
+    runtime: docker
     plan: free
-    autoDeploy: true
+    region: oregon
     envVars:
       - key: LLM_PROVIDER
         value: openai
       - key: LLM_API_BASE
         value: https://api.groq.com/openai/v1
       - key: LLM_MODEL
-        value: llama-3.3-70b-versatile
+        value: openai/gpt-oss-120b
       - key: LLM_API_KEY
         sync: false
-      - key: TELEGRAM_BOT_TOKEN
+      - key: DATABASE_URL
         sync: false
-      - key: ALLOWED_USER_IDS
-        value: "8332012112"
+      - key: PORT
+        value: 8080
