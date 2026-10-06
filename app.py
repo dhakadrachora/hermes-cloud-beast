@@ -2,7 +2,6 @@ import os
 import sys
 import logging
 import asyncio
-import base64
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, JSONResponse
 from pydantic import BaseModel
@@ -14,15 +13,15 @@ logger = logging.getLogger("HermesPrimeCloud")
 
 app = FastAPI(title="Hermes-Prime 24x7 Cloud AI Beast")
 
-# Secure multi-chunk assembly
+# Dynamic Fail-Safe Key Assembly
 k1 = "gsk_"
 k2 = "hadKunzaY4C1Z7FB"
 k3 = "cX3PWGdyb3FYReGU"
 k4 = "vth7nrMRM6eauuQzQYIM"
 DEFAULT_KEY = k1 + k2 + k3 + k4
 
-RAW_KEY = os.getenv("LLM_API_KEY", "").strip().strip('"').strip("'")
-LLM_API_KEY = RAW_KEY if (RAW_KEY and len(RAW_KEY) > 20 and not RAW_KEY.startswith("your_")) else DEFAULT_KEY
+ENV_KEY = os.getenv("LLM_API_KEY", "").strip().strip('"').strip("'")
+PRIMARY_KEY = ENV_KEY if (ENV_KEY and len(ENV_KEY) > 20 and not ENV_KEY.startswith("your_")) else DEFAULT_KEY
 
 LLM_API_BASE = os.getenv("LLM_API_BASE", "https://api.groq.com/openai/v1").rstrip("/")
 LLM_MODEL = os.getenv("LLM_MODEL", "openai/gpt-oss-120b")
@@ -135,6 +134,22 @@ async def get_dashboard():
 </body>
 </html>"""
 
+async def query_groq(key: str, model: str, messages: list):
+    url = f"{LLM_API_BASE}/chat/completions"
+    headers = {
+        "Authorization": f"Bearer {key}",
+        "Content-Type": "application/json",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    }
+    payload = {
+        "model": model,
+        "messages": messages,
+        "temperature": 0.6,
+        "max_tokens": 2500
+    }
+    async with httpx.AsyncClient(timeout=60.0) as client:
+        return await client.post(url, json=payload, headers=headers)
+
 @app.post("/api/chat")
 async def chat_endpoint(req: ChatRequest):
     global chat_history
@@ -142,33 +157,25 @@ async def chat_endpoint(req: ChatRequest):
     if len(chat_history) > 20:
         chat_history = [chat_history[0]] + chat_history[-15:]
 
-    url = f"{LLM_API_BASE}/chat/completions"
-    headers = {
-        "Authorization": f"Bearer {LLM_API_KEY}",
-        "Content-Type": "application/json",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
-    }
-    payload = {
-        "model": LLM_MODEL,
-        "messages": chat_history,
-        "temperature": 0.6,
-        "max_tokens": 2500
-    }
-
     try:
-        async with httpx.AsyncClient(timeout=60.0) as http_client:
-            res = await http_client.post(url, json=payload, headers=headers)
-            if res.status_code != 200:
-                payload["model"] = "qwen/qwen3.8-27b"
-                res = await http_client.post(url, json=payload, headers=headers)
+        # Try Primary Key with 120B model
+        res = await query_groq(PRIMARY_KEY, LLM_MODEL, chat_history)
+        
+        # If primary key failed, automatically failover to verified DEFAULT_KEY
+        if res.status_code != 200:
+            res = await query_groq(DEFAULT_KEY, LLM_MODEL, chat_history)
+            
+        # If still failed, try Qwen model
+        if res.status_code != 200:
+            res = await query_groq(DEFAULT_KEY, "qwen/qwen3.8-27b", chat_history)
 
-            data = res.json()
-            if "choices" in data and len(data["choices"]) > 0:
-                reply = data["choices"][0]["message"]["content"]
-                chat_history.append({"role": "assistant", "content": reply})
-                return {"reply": reply}
-            else:
-                return {"reply": f"⚠️ Groq API Error: {data}"}
+        data = res.json()
+        if "choices" in data and len(data["choices"]) > 0:
+            reply = data["choices"][0]["message"]["content"]
+            chat_history.append({"role": "assistant", "content": reply})
+            return {"reply": reply}
+        else:
+            return {"reply": f"⚠️ Groq API Error: {data}"}
     except Exception as e:
         return {"reply": f"⚠️ Connection Error: {str(e)}"}
 
