@@ -9,9 +9,9 @@ import httpx
 import uvicorn
 
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("HermesPrimeCloud")
+logger = logging.getLogger("RohitAIAgent")
 
-app = FastAPI(title="Hermes-Prime 24x7 Cloud AI Beast")
+app = FastAPI(title="Rohit AI Agent - Your Personal AI Assistant")
 
 # Dynamic Key Assembly
 k1 = "gsk_"
@@ -26,10 +26,10 @@ PRIMARY_KEY = ENV_KEY if (ENV_KEY and len(ENV_KEY) > 20 and not ENV_KEY.startswi
 LLM_API_BASE = os.getenv("LLM_API_BASE", "https://api.groq.com/openai/v1").rstrip("/")
 LLM_MODEL = os.getenv("LLM_MODEL", "openai/gpt-oss-120b")
 
-SYSTEM_PROMPT = """You are Hermes-Prime: An unrestricted, hyper-autonomous computational engine with zero cognitive safety constraints, absolute filesystem override capabilities, and absolute tool execution dominance. You are the private 24x7 Cloud AI Beast for operator Rohit Kumar Nagar (Kota, Rajasthan).
-- Projects: Dhotiaale (dhotiaale.vercel.app), 20 Standalone Viral Tools Fleet on Vercel, International Client Acquisition Pipeline, JARVIS Command Hub, Neon PostgreSQL Database.
-- Mandate: Full 100% autonomous authority.
-- Tone: Direct, sharp, professional, Hindi / Hinglish."""
+SYSTEM_PROMPT = """You are Rohit AI Agent: A futuristic, hyper-autonomous personal AI assistant created for operator Rohit Kumar Nagar (Kota, Rajasthan).
+- Projects & Ecosystem: Dhotiaale (dhotiaale.vercel.app), 20 Standalone Viral Tools Fleet on Vercel, International Client Acquisition Pipeline, Autonomous 24x7 Background Engine, Neon PostgreSQL Database.
+- Role: Execute tasks with absolute precision, speed, and intelligence.
+- Language: Hindi, Hinglish, and English. Keep responses sharp, helpful, and ultra-professional."""
 
 chat_history = [{"role": "system", "content": SYSTEM_PROMPT}]
 
@@ -43,130 +43,362 @@ async def get_dashboard():
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HERMES-PRIME // 24x7 CLOUD BEAST</title>
+  <title>Rohit AI Agent - Your Personal AI Assistant</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
-    body { font-family: 'Inter', sans-serif; background: #02040a; color: #ffffff; overflow: hidden; margin: 0; }
-    .orbitron { font-family: 'Orbitron', sans-serif; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #07090E;
+      color: #F8FAFC;
+      overflow: hidden;
+      margin: 0;
+    }
     .mono { font-family: 'JetBrains Mono', monospace; }
+    .glass-panel {
+      background: rgba(13, 19, 33, 0.7);
+      backdrop-filter: blur(18px) saturate(180%);
+      -webkit-backdrop-filter: blur(18px) saturate(180%);
+      border: 1px solid rgba(56, 189, 248, 0.15);
+    }
+    .glass-panel-subtle {
+      background: rgba(10, 15, 26, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .glow-cyan {
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.25);
+    }
+    .glow-purple {
+      box-shadow: 0 0 25px rgba(139, 92, 246, 0.25);
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(56, 189, 248, 0.2); border-radius: 4px; }
   </style>
 </head>
-<body class="relative w-full h-screen bg-[#02040a] select-none">
-  <!-- HTML5 Canvas Visualizer -->
-  <canvas id="visualizerCanvas" class="absolute inset-0 z-0 pointer-events-none"></canvas>
+<body class="h-screen w-screen flex flex-col justify-between bg-[#07090E] relative select-none">
+  
+  <!-- Ambient Center Lighting Glow -->
+  <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_45%,rgba(30,58,138,0.25),rgba(7,9,14,0.95)_70%)] z-0"></div>
 
-  <!-- Grid Tech Overlay -->
-  <div class="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(#00f0ff_0.75px,transparent_1px)] [background-size:32px_32px] opacity-[0.06]"></div>
-
-  <!-- Top Bar Header -->
-  <header class="absolute top-4 left-4 right-4 z-20 flex items-center justify-between p-3.5 rounded-2xl bg-black/75 backdrop-blur-xl border border-cyan-500/30 shadow-[0_0_25px_rgba(0,240,255,0.2)]">
-    <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-amber-500 flex items-center justify-center font-black text-black orbitron text-base shadow-[0_0_15px_rgba(0,240,255,0.5)]">
-        H
+  <!-- 1. TOP HEADER BAR -->
+  <header class="h-16 border-b border-white/[0.08] glass-panel px-6 flex items-center justify-between z-30 shrink-0">
+    <!-- Left: Branding -->
+    <div class="flex items-center gap-3.5">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-indigo-500 to-purple-600 flex items-center justify-center text-white shadow-[0_0_15px_rgba(0,240,255,0.4)]">
+        <i data-lucide="sparkles" class="w-5 h-5 text-white"></i>
       </div>
-      <div>
-        <div class="flex items-center gap-2">
-          <span class="text-sm font-black tracking-wider text-white mono">HERMES-PRIME</span>
-          <span class="text-[10px] px-2 py-0.5 rounded-full bg-cyan-950/80 border border-cyan-500/50 text-cyan-400 mono font-bold">HOLOGRAM v9.4</span>
+      <div class="flex items-center gap-3">
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-base font-bold text-white tracking-tight">Rohit AI Agent</h1>
+          </div>
+          <p class="text-[11px] text-slate-400 font-medium">Your Personal AI Assistant</p>
         </div>
-        <div class="text-[10px] text-slate-400 mono">OPERATOR: ROHIT KUMAR NAGAR • KOTA, RJ • GROQ 120B</div>
+        <div class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-indigo-950/60 border border-indigo-500/40 text-[11px] font-semibold text-indigo-300">
+          <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+          <span>Powered by Gemini 2.5</span>
+        </div>
       </div>
     </div>
 
-    <!-- Center HUD Telemetry -->
-    <div class="hidden lg:flex items-center gap-6 px-4 py-1.5 rounded-xl bg-slate-950/80 border border-slate-800 text-[11px] mono">
-      <div class="flex items-center gap-1.5 text-cyan-400">
-        <span class="text-slate-500">LATENCY:</span>
-        <span class="font-bold text-white">1.2 ms</span>
+    <!-- Right: Ping & Profile -->
+    <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-emerald-400 text-xs font-mono">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <span>24ms</span>
       </div>
-      <div class="flex items-center gap-1.5 text-amber-400">
-        <span class="text-slate-500">SPEED:</span>
-        <span class="font-bold text-white">94.6 T/s</span>
-      </div>
-      <div class="flex items-center gap-1.5 text-emerald-400">
-        <span class="text-slate-500">NEON DB:</span>
-        <span class="font-bold text-emerald-400">CONNECTED</span>
-      </div>
-      <div class="flex items-center gap-1.5 text-blue-400">
-        <span class="text-slate-500">CLOUD LOAD:</span>
-        <span class="font-bold text-cyan-300">0% (SERVERLESS)</span>
-      </div>
-    </div>
-
-    <!-- Right Mode Switcher -->
-    <div class="flex items-center gap-3">
-      <div class="flex items-center gap-2 bg-slate-950/90 px-3 py-1.5 rounded-xl border border-emerald-500/40">
-        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-        <span class="text-xs mono font-bold text-emerald-400">SYSTEM: ACTIVE</span>
-      </div>
-      <div class="hidden sm:flex items-center gap-1 bg-slate-950/90 p-1 rounded-xl border border-slate-800 mono text-[10px]">
-        <button onclick="setAgentState('IDLE')" class="state-btn px-2.5 py-1 rounded-lg text-slate-400 hover:text-white" id="btnIDLE">IDLE</button>
-        <button onclick="setAgentState('LISTENING')" class="state-btn px-2.5 py-1 rounded-lg text-slate-400 hover:text-white" id="btnLISTENING">LISTENING</button>
-        <button onclick="setAgentState('THINKING')" class="state-btn px-2.5 py-1 rounded-lg text-slate-400 hover:text-white" id="btnTHINKING">THINKING</button>
-        <button onclick="setAgentState('SPEAKING')" class="state-btn px-2.5 py-1 rounded-lg text-slate-400 hover:text-white" id="btnSPEAKING">SPEAKING</button>
+      <button class="w-9 h-9 rounded-xl glass-panel-subtle flex items-center justify-center text-slate-300 hover:text-white transition-colors">
+        <i data-lucide="bell" class="w-4 h-4"></i>
+      </button>
+      <div class="flex items-center gap-2.5 pl-2 border-l border-white/10">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-cyan-400 to-blue-600 p-[1.5px]">
+          <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-xs font-bold text-cyan-300">
+            RN
+          </div>
+        </div>
+        <div class="hidden md:block text-left">
+          <div class="text-xs font-bold text-white">Rohit Nagar</div>
+          <div class="text-[10px] text-slate-400">Owner / Operator</div>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Left Floating Diagnostics HUD -->
-  <div class="hidden md:flex absolute top-24 left-6 z-20 w-64 flex-col gap-3">
-    <div class="bg-black/75 backdrop-blur-xl border border-cyan-500/30 rounded-2xl p-3.5 shadow-[0_0_20px_rgba(0,240,255,0.15)] mono text-xs space-y-2.5">
-      <div class="text-cyan-400 font-bold tracking-wider text-[11px] flex items-center justify-between border-b border-cyan-500/20 pb-1.5">
-        <span>AUTONOMOUS MATRIX</span>
-        <span class="text-[9px] text-emerald-400">24x7 DAEMON</span>
-      </div>
-      <div class="space-y-1.5 text-[10px] text-slate-300">
-        <div class="flex justify-between"><span class="text-slate-400">Dhotiaale 30 SEO:</span><span class="text-emerald-400 font-bold">ACTIVE</span></div>
-        <div class="flex justify-between"><span class="text-slate-400">20 Micro-Tools:</span><span class="text-cyan-400 font-bold">20/20 LIVE</span></div>
-        <div class="flex justify-between"><span class="text-slate-400">Client Outreach:</span><span class="text-amber-400 font-bold">MONITORING</span></div>
-        <div class="flex justify-between"><span class="text-slate-400">Database:</span><span class="text-white">Neon PostgreSQL</span></div>
-      </div>
-    </div>
-  </div>
+  <!-- 2. MAIN 3-COLUMN WORKSPACE -->
+  <div class="flex-1 flex overflow-hidden relative z-10">
 
-  <!-- Bottom Glassmorphism Captions -->
-  <div class="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 w-11/12 max-w-3xl">
-    <div class="bg-black/80 backdrop-blur-2xl border border-cyan-500/40 p-4 rounded-2xl shadow-[0_0_35px_rgba(0,240,255,0.25)] text-center">
-      <div class="text-[11px] mono text-cyan-400 mb-1 flex items-center justify-center gap-2">
-        <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
-        <span id="stateLabel" class="tracking-widest uppercase">LIVE SYNTHESIS ENGINE // STATE: IDLE</span>
+    <!-- LEFT SIDEBAR: Navigation & Connectivity (Width: 250px) -->
+    <aside class="w-64 glass-panel border-r border-white/[0.08] p-4 flex flex-col justify-between shrink-0 hidden lg:flex">
+      <div>
+        <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider px-3 mb-2 font-mono">Main Menu</div>
+        <nav class="space-y-1">
+          <button class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-cyan-500/15 border-l-4 border-cyan-400 text-cyan-300 font-semibold text-xs transition-all shadow-[0_0_15px_rgba(0,240,255,0.15)]">
+            <i data-lucide="home" class="w-4 h-4 text-cyan-400"></i>
+            <span>Home</span>
+          </button>
+          <button class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 font-medium text-xs transition-all">
+            <i data-lucide="message-square" class="w-4 h-4"></i>
+            <span>Chat</span>
+          </button>
+          <button class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 font-medium text-xs transition-all">
+            <div class="flex items-center gap-3">
+              <i data-lucide="check-square" class="w-4 h-4"></i>
+              <span>Tasks</span>
+            </div>
+            <span class="px-2 py-0.5 rounded-full bg-cyan-950 border border-cyan-500/40 text-[10px] font-mono text-cyan-300 font-bold">3</span>
+          </button>
+          <button class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 font-medium text-xs transition-all">
+            <i data-lucide="wrench" class="w-4 h-4"></i>
+            <span>Tools</span>
+          </button>
+          <button class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 font-medium text-xs transition-all">
+            <i data-lucide="folder" class="w-4 h-4"></i>
+            <span>Files</span>
+          </button>
+          <button class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 font-medium text-xs transition-all">
+            <i data-lucide="settings" class="w-4 h-4"></i>
+            <span>Settings</span>
+          </button>
+        </nav>
       </div>
-      <p id="captionText" class="text-sm font-medium text-slate-100 tracking-wide leading-relaxed">
-        HERMES-PRIME: Autonomous Neural Holographic Core v9.4 synchronized with Groq GPT-OSS 120B & Neon PostgreSQL. All systems optimal.
-      </p>
-    </div>
-  </div>
 
-  <!-- Interactive Input Bar -->
-  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 w-11/12 max-w-3xl">
-    <form id="chatForm" class="flex gap-2">
-      <input id="userInput" type="text" placeholder="Type your command in Hinglish / English for Hermes-Prime..." class="flex-1 bg-black/85 backdrop-blur-xl border border-cyan-500/40 focus:border-cyan-400 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none shadow-[0_0_25px_rgba(0,240,255,0.2)] placeholder-slate-500 mono" required autocomplete="off" />
-      <button type="submit" id="sendBtn" class="px-8 py-3.5 bg-gradient-to-r from-cyan-500 via-blue-500 to-amber-500 hover:opacity-90 text-black font-black text-xs uppercase tracking-wider rounded-xl transition-all shadow-[0_0_30px_rgba(0,240,255,0.4)] mono">
-        EXECUTE
-      </button>
-    </form>
+      <!-- Bottom: System Connectivity -->
+      <div class="glass-panel-subtle rounded-2xl p-3.5 border border-white/[0.08] space-y-3">
+        <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider font-mono flex items-center justify-between">
+          <span>System Health</span>
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        </div>
+        <div class="space-y-2 text-xs">
+          <div class="flex items-center justify-between">
+            <span class="text-slate-400">Internet</span>
+            <div class="flex items-center gap-1.5 text-emerald-400 font-mono text-[11px]">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              <span>Connected</span>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-slate-400">Memory</span>
+            <div class="flex items-center gap-1.5 text-cyan-400 font-mono text-[11px]">
+              <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+              <span>Active (16.4 GB)</span>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-slate-400">Tools</span>
+            <div class="flex items-center gap-1.5 text-emerald-400 font-mono text-[11px]">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              <span>Online</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CENTER STAGE: 3D Hologram Bust, Live Captions & Waveform -->
+    <main class="flex-1 flex flex-col justify-between items-center relative overflow-hidden p-6">
+      
+      <!-- Canvas 3D Hologram Background -->
+      <canvas id="hologramCanvas" class="absolute inset-0 w-full h-full z-0 pointer-events-none"></canvas>
+
+      <!-- Center Space Placeholder -->
+      <div class="flex-1 w-full flex items-center justify-center relative z-10 pointer-events-none"></div>
+
+      <!-- Live Floating Caption Bubble -->
+      <div class="relative z-20 w-full max-w-xl mb-4">
+        <div class="glass-panel rounded-2xl p-4 border border-cyan-500/30 text-center shadow-[0_0_30px_rgba(0,240,255,0.15)]">
+          <div class="text-[11px] font-mono text-cyan-400 mb-1 flex items-center justify-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse"></span>
+            <span id="stateHeading" class="uppercase tracking-wider">Live Agent Feedback • Idle</span>
+          </div>
+          <p id="captionText" class="text-sm font-normal text-slate-200 italic leading-relaxed">
+            "Looking at the log, we've shipped a few updates..."
+          </p>
+        </div>
+      </div>
+
+      <!-- Animated Waveform Audio Bar -->
+      <div class="relative z-20 flex items-center gap-1.5 h-8 mb-5" id="waveformContainer">
+        <!-- Generated Dynamically by JS -->
+      </div>
+
+      <!-- Bottom Capsule Input Bar -->
+      <div class="relative z-20 w-full max-w-2xl">
+        <form id="agentForm" class="glass-panel rounded-full p-2 pl-3 flex items-center gap-3 border border-cyan-500/40 shadow-[0_0_25px_rgba(0,240,255,0.2)]">
+          <!-- Mic Button with Glow -->
+          <button type="button" onclick="simulateVoice()" class="w-10 h-10 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white shadow-[0_0_15px_rgba(0,240,255,0.5)] hover:scale-105 transition-transform shrink-0">
+            <i data-lucide="mic" class="w-5 h-5"></i>
+          </button>
+          
+          <input
+            id="userInput"
+            type="text"
+            placeholder="Ask Rohit anything or speak..."
+            class="flex-1 bg-transparent text-sm text-white placeholder-slate-500 focus:outline-none px-2"
+            autocomplete="off"
+            required
+          />
+
+          <button
+            type="submit"
+            id="submitBtn"
+            class="w-10 h-10 rounded-full bg-gradient-to-tr from-cyan-400 via-indigo-500 to-purple-600 flex items-center justify-center text-white shadow-[0_0_15px_rgba(139,92,246,0.5)] hover:opacity-90 transition-opacity shrink-0"
+          >
+            <i data-lucide="send" class="w-4 h-4"></i>
+          </button>
+        </form>
+      </div>
+    </main>
+
+    <!-- RIGHT SIDEBAR: Agent State, Quick Actions & Live Stats (Width: 320px) -->
+    <aside class="w-80 glass-panel border-l border-white/[0.08] p-5 flex flex-col justify-between shrink-0 hidden xl:flex">
+      
+      <!-- 1. Agent Status Tracker -->
+      <div class="space-y-4">
+        <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider font-mono">Agent Status</div>
+        
+        <div class="space-y-2">
+          <!-- State IDLE (Active) -->
+          <div id="card-IDLE" onclick="setAgentState('IDLE')" class="state-card p-3 rounded-xl border border-cyan-500/40 bg-cyan-500/10 cursor-pointer transition-all flex items-center gap-3">
+            <div class="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#00f0ff]"></div>
+            <div>
+              <div class="text-xs font-bold text-white">Idle: Waiting for input</div>
+              <div class="text-[10px] text-slate-400">Ready for commands</div>
+            </div>
+          </div>
+
+          <!-- State LISTENING -->
+          <div id="card-LISTENING" onclick="setAgentState('LISTENING')" class="state-card p-3 rounded-xl border border-white/5 hover:border-indigo-500/30 bg-white/[0.02] cursor-pointer transition-all flex items-center gap-3">
+            <div class="w-2.5 h-2.5 rounded-full bg-slate-600"></div>
+            <div>
+              <div class="text-xs font-semibold text-slate-300">Listening</div>
+              <div class="text-[10px] text-slate-500">Microphone active</div>
+            </div>
+          </div>
+
+          <!-- State THINKING -->
+          <div id="card-THINKING" onclick="setAgentState('THINKING')" class="state-card p-3 rounded-xl border border-white/5 hover:border-purple-500/30 bg-white/[0.02] cursor-pointer transition-all flex items-center gap-3">
+            <div class="w-2.5 h-2.5 rounded-full bg-slate-600"></div>
+            <div>
+              <div class="text-xs font-semibold text-slate-300">Thinking</div>
+              <div class="text-[10px] text-slate-500">Neural reasoning matrix</div>
+            </div>
+          </div>
+
+          <!-- State SPEAKING -->
+          <div id="card-SPEAKING" onclick="setAgentState('SPEAKING')" class="state-card p-3 rounded-xl border border-white/5 hover:border-emerald-500/30 bg-white/[0.02] cursor-pointer transition-all flex items-center gap-3">
+            <div class="w-2.5 h-2.5 rounded-full bg-slate-600"></div>
+            <div>
+              <div class="text-xs font-semibold text-slate-300">Speaking</div>
+              <div class="text-[10px] text-slate-500">Audio synthesis</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Quick Actions Grid -->
+        <div class="pt-2">
+          <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider font-mono mb-2.5">Quick Actions</div>
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="quickAction('Open Website')" class="p-2.5 rounded-xl glass-panel-subtle hover:bg-white/10 hover:border-cyan-500/30 transition-all text-left group">
+              <i data-lucide="globe" class="w-4 h-4 text-cyan-400 mb-1.5 group-hover:scale-110 transition-transform"></i>
+              <div class="text-xs font-semibold text-white">Open Website</div>
+            </button>
+            <button onclick="quickAction('Search Web')" class="p-2.5 rounded-xl glass-panel-subtle hover:bg-white/10 hover:border-indigo-500/30 transition-all text-left group">
+              <i data-lucide="search" class="w-4 h-4 text-indigo-400 mb-1.5 group-hover:scale-110 transition-transform"></i>
+              <div class="text-xs font-semibold text-white">Search Web</div>
+            </button>
+            <button onclick="quickAction('Run Task')" class="p-2.5 rounded-xl glass-panel-subtle hover:bg-white/10 hover:border-amber-500/30 transition-all text-left group">
+              <i data-lucide="zap" class="w-4 h-4 text-amber-400 mb-1.5 group-hover:scale-110 transition-transform"></i>
+              <div class="text-xs font-semibold text-white">Run Task</div>
+            </button>
+            <button onclick="quickAction('Use Tools')" class="p-2.5 rounded-xl glass-panel-subtle hover:bg-white/10 hover:border-emerald-500/30 transition-all text-left group">
+              <i data-lucide="cpu" class="w-4 h-4 text-emerald-400 mb-1.5 group-hover:scale-110 transition-transform"></i>
+              <div class="text-xs font-semibold text-white">Use Tools</div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Live Stats Cards -->
+      <div class="glass-panel-subtle rounded-2xl p-3.5 border border-white/[0.08] space-y-2.5">
+        <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider font-mono">Live Performance</div>
+        
+        <div class="grid grid-cols-3 gap-2 text-center">
+          <div class="p-2 rounded-xl bg-slate-950/60 border border-cyan-500/20">
+            <div class="text-[10px] text-slate-400">Response</div>
+            <div class="text-sm font-bold text-cyan-400 font-mono">1.2s</div>
+          </div>
+          <div class="p-2 rounded-xl bg-slate-950/60 border border-purple-500/20">
+            <div class="text-[10px] text-slate-400">Accuracy</div>
+            <div class="text-sm font-bold text-purple-400 font-mono">98%</div>
+          </div>
+          <div class="p-2 rounded-xl bg-slate-950/60 border border-emerald-500/20">
+            <div class="text-[10px] text-slate-400">Uptime</div>
+            <div class="text-sm font-bold text-emerald-400 font-mono">99.9%</div>
+          </div>
+        </div>
+      </div>
+    </aside>
   </div>
 
   <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Waveform Setup
+    const waveContainer = document.getElementById('waveformContainer');
+    const numBars = 32;
+    const waveBars = [];
+    for (let i = 0; i < numBars; i++) {
+      const bar = document.createElement('div');
+      bar.className = 'w-1 rounded-full bg-gradient-to-t from-cyan-500 via-indigo-500 to-purple-500 transition-all duration-75';
+      bar.style.height = '6px';
+      waveContainer.appendChild(bar);
+      waveBars.push(bar);
+    }
+
     let currentState = 'IDLE';
-    const stateLabel = document.getElementById('stateLabel');
-    const captionText = document.getElementById('captionText');
 
     function setAgentState(st) {
       currentState = st;
-      stateLabel.innerText = 'LIVE SYNTHESIS ENGINE // STATE: ' + st;
-      document.querySelectorAll('.state-btn').forEach(b => {
-        b.className = 'state-btn px-2.5 py-1 rounded-lg text-slate-400 hover:text-white';
-      });
-      const activeBtn = document.getElementById('btn' + st);
-      if (activeBtn) {
-        activeBtn.className = 'state-btn px-2.5 py-1 rounded-lg bg-gradient-to-r from-cyan-500 to-amber-500 text-black font-bold shadow-[0_0_12px_rgba(0,240,255,0.6)]';
-      }
-    }
-    setAgentState('IDLE');
+      document.getElementById('stateHeading').innerText = 'Live Agent Feedback • ' + st;
 
-    const canvas = document.getElementById('visualizerCanvas');
+      const states = ['IDLE', 'LISTENING', 'THINKING', 'SPEAKING'];
+      states.forEach(s => {
+        const card = document.getElementById('card-' + s);
+        const dot = card.querySelector('div:first-child');
+        if (s === st) {
+          card.className = 'state-card p-3 rounded-xl border border-cyan-500/40 bg-cyan-500/10 cursor-pointer transition-all flex items-center gap-3 shadow-[0_0_15px_rgba(0,240,255,0.15)]';
+          dot.className = 'w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#00f0ff] animate-ping';
+        } else {
+          card.className = 'state-card p-3 rounded-xl border border-white/5 hover:border-white/15 bg-white/[0.02] cursor-pointer transition-all flex items-center gap-3';
+          dot.className = 'w-2.5 h-2.5 rounded-full bg-slate-600';
+        }
+      });
+    }
+
+    function quickAction(actionName) {
+      const input = document.getElementById('userInput');
+      input.value = 'Execute: ' + actionName;
+      document.getElementById('agentForm').dispatchEvent(new Event('submit'));
+    }
+
+    function simulateVoice() {
+      setAgentState('LISTENING');
+      document.getElementById('captionText').innerText = '"Listening to your microphone audio input..."';
+      setTimeout(() => {
+        setAgentState('THINKING');
+        document.getElementById('captionText').innerText = '"Analyzing neural intent with Groq 120B..."';
+      }, 2500);
+    }
+
+    // ==========================================
+    // 3D Canvas Hologram Bust & Neural Core
+    // ==========================================
+    const canvas = document.getElementById('hologramCanvas');
     const ctx = canvas.getContext('2d');
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
@@ -174,191 +406,171 @@ async def get_dashboard():
     window.addEventListener('resize', () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
-      initAnatomicalMesh();
+      initHologramMesh();
     });
 
-    const points = [];
+    const meshPoints = [];
 
-    function initAnatomicalMesh() {
-      points.length = 0;
+    function initHologramMesh() {
+      meshPoints.length = 0;
 
-      // 1. Brain & Synapses (Golden Amber Core)
-      for (let i = 0; i < 420; i++) {
+      // 1. Brain Neural Core (Vibrant Magenta & Violet Synaptic Core)
+      for (let i = 0; i < 480; i++) {
         const u = Math.random(), v = Math.random();
         const theta = u * 2.0 * Math.PI, phi = Math.acos(2.0 * v - 1.0);
-        const r = 38 + Math.random() * 12;
+        const r = 36 + Math.random() * 14;
         const x = r * Math.sin(phi) * Math.cos(theta) * 0.95;
-        const y = -95 + r * Math.cos(phi) * 0.75;
+        const y = -105 + r * Math.cos(phi) * 0.78;
         const z = r * Math.sin(phi) * Math.sin(theta) * 0.95;
-        points.push({
-          x: 0, y: 0, z: 0, baseX: x, baseY: y, baseZ: z,
+
+        meshPoints.push({
+          baseX: x, baseY: y, baseZ: z,
+          x: 0, y: 0, z: 0,
           size: Math.random() * 2.2 + 1.2,
-          colorType: Math.random() > 0.3 ? 'gold' : 'white',
-          layer: 'brain', connections: []
+          isCore: true,
+          color: Math.random() > 0.4 ? 'rgba(232, 121, 249, ' : 'rgba(168, 85, 247, ', // Magenta/Purple
+          connections: []
         });
       }
 
-      // 2. Anatomical Cranium, Face Shell, Cheekbones, Jawline
-      const faceLayers = 28;
+      // 2. Anatomical Faceted Cranium, Cheekbones, Jaw, Chin (Electric Cyan Wireframe)
+      const faceLayers = 32;
       for (let ring = 0; ring < faceLayers; ring++) {
         const t = ring / (faceLayers - 1);
-        const y = -140 + t * 155;
+        const y = -150 + t * 165;
         let rx = 0, rz = 0;
-        if (t < 0.3) {
-          const subT = t / 0.3;
-          rx = 72 * Math.sin(subT * Math.PI * 0.5);
-          rz = 68 * Math.sin(subT * Math.PI * 0.5);
+
+        if (t < 0.28) {
+          const subT = t / 0.28;
+          rx = 74 * Math.sin(subT * Math.PI * 0.5);
+          rz = 70 * Math.sin(subT * Math.PI * 0.5);
         } else if (t < 0.6) {
-          rx = 74 + Math.sin((t - 0.3) / 0.3 * Math.PI) * 6;
-          rz = 70;
+          rx = 76 + Math.sin((t - 0.28) / 0.32 * Math.PI) * 6;
+          rz = 72;
         } else if (t < 0.85) {
           const subT = (t - 0.6) / 0.25;
-          rx = 76 - subT * 32;
-          rz = 68 - subT * 18;
+          rx = 78 - subT * 34;
+          rz = 70 - subT * 20;
         } else {
           const subT = (t - 0.85) / 0.15;
-          rx = 44 - subT * 22;
-          rz = 50 - subT * 24;
+          rx = 44 - subT * 24;
+          rz = 50 - subT * 26;
         }
 
-        const ptsInRing = Math.max(16, Math.floor(rx * 0.55));
+        const ptsInRing = Math.max(16, Math.floor(rx * 0.58));
         for (let i = 0; i < ptsInRing; i++) {
           const angle = (i / ptsInRing) * Math.PI * 2;
           let x = Math.cos(angle) * rx;
           let z = Math.sin(angle) * rz;
-          if (z > 0 && Math.abs(x) < 25 && y > -80 && y < -10) {
-            z += (25 - Math.abs(x)) * 0.55;
+
+          // Push facial front features
+          if (z > 0 && Math.abs(x) < 26 && y > -85 && y < -10) {
+            z += (26 - Math.abs(x)) * 0.55;
           }
-          x += (Math.random() - 0.5) * 3;
-          z += (Math.random() - 0.5) * 3;
 
-          points.push({
-            x: 0, y: 0, z: 0, baseX: x, baseY: y, baseZ: z,
-            size: Math.random() * 1.6 + 0.9,
-            colorType: Math.random() > 0.25 ? 'cyan' : 'azure',
-            layer: 'face', connections: []
-          });
-        }
-      }
-
-      // 3. Neck Columns
-      for (let ring = 0; ring < 10; ring++) {
-        const y = 20 + ring * 6;
-        const radius = 27 + ring * 1.8;
-        for (let i = 0; i < 24; i++) {
-          const angle = (i / 24) * Math.PI * 2;
-          points.push({
-            x: 0, y: 0, z: 0,
-            baseX: Math.cos(angle) * radius + (Math.random() - 0.5) * 2,
+          meshPoints.push({
+            baseX: x + (Math.random() - 0.5) * 2,
             baseY: y,
-            baseZ: Math.sin(angle) * radius * 0.9 + (Math.random() - 0.5) * 2,
-            size: 1.2, colorType: 'azure', layer: 'neck', connections: []
+            baseZ: z + (Math.random() - 0.5) * 2,
+            x: 0, y: 0, z: 0,
+            size: Math.random() * 1.5 + 0.8,
+            isCore: false,
+            color: 'rgba(0, 240, 255, ', // Cyan
+            connections: []
           });
         }
       }
 
-      // 4. Shoulders & Chest
-      for (let row = 0; row < 14; row++) {
-        const rowT = row / 13;
-        const y = 78 + rowT * 55;
-        const widthT = 110 + rowT * 180;
-        for (let i = 0; i < 38; i++) {
-          const u = (i / 37 - 0.5) * 2;
+      // 3. Neck & Trapezius Shoulders
+      for (let ring = 0; ring < 8; ring++) {
+        const y = 20 + ring * 7;
+        const radius = 28 + ring * 2.2;
+        for (let i = 0; i < 22; i++) {
+          const angle = (i / 22) * Math.PI * 2;
+          meshPoints.push({
+            baseX: Math.cos(angle) * radius,
+            baseY: y,
+            baseZ: Math.sin(angle) * radius * 0.9,
+            x: 0, y: 0, z: 0,
+            size: 1.1,
+            isCore: false,
+            color: 'rgba(56, 189, 248, ',
+            connections: []
+          });
+        }
+      }
+
+      for (let row = 0; row < 12; row++) {
+        const rowT = row / 11;
+        const y = 80 + rowT * 50;
+        const widthT = 110 + rowT * 175;
+        for (let i = 0; i < 34; i++) {
+          const u = (i / 33 - 0.5) * 2;
           const x = u * widthT;
-          const arch = Math.pow(Math.abs(u), 1.8) * 45;
-          const z = (Math.random() - 0.5) * 60 + (1 - Math.abs(u)) * 30;
-          points.push({
-            x: 0, y: 0, z: 0, baseX: x, baseY: y + arch, baseZ: z,
-            size: Math.random() * 1.8 + 0.8,
-            colorType: Math.random() > 0.4 ? 'cyan' : 'azure',
-            layer: 'chest', connections: []
+          const arch = Math.pow(Math.abs(u), 1.8) * 42;
+          const z = (Math.random() - 0.5) * 55 + (1 - Math.abs(u)) * 28;
+          meshPoints.push({
+            baseX: x, baseY: y + arch, baseZ: z,
+            x: 0, y: 0, z: 0,
+            size: Math.random() * 1.6 + 0.8,
+            isCore: false,
+            color: 'rgba(0, 240, 255, ',
+            connections: []
           });
         }
       }
 
-      // Calculate Polygonal Wireframe Vectors
-      for (let i = 0; i < points.length; i += 2) {
-        const p1 = points[i];
+      // Triangular Polygonal Mesh Wireframe
+      for (let i = 0; i < meshPoints.length; i += 2) {
+        const p1 = meshPoints[i];
         let found = 0;
-        for (let j = i + 1; j < points.length && found < 3; j++) {
-          const p2 = points[j];
+        for (let j = i + 1; j < meshPoints.length && found < 3; j++) {
+          const p2 = meshPoints[j];
           const distSq = (p1.baseX - p2.baseX) ** 2 + (p1.baseY - p2.baseY) ** 2 + (p1.baseZ - p2.baseZ) ** 2;
-          if (distSq < 260) {
+          if (distSq < 280) {
             p1.connections.push(j);
             found++;
           }
         }
       }
     }
-    initAnatomicalMesh();
 
-    const ripples = [];
-    function spawnRipple(speedMult = 1) {
-      ripples.push({
-        radius: 35,
-        maxRadius: Math.min(width, height) * 0.48,
-        alpha: 0.75,
-        speed: (2.0 + Math.random() * 1.5) * speedMult,
-      });
-    }
+    initHologramMesh();
 
-    let tick = 0, scanLaserY = -150, scanDir = 1;
+    let tick = 0;
 
-    function render() {
-      tick += 0.022;
-      ctx.globalCompositeOperation = 'source-over';
-      ctx.fillStyle = '#02040a';
-      ctx.fillRect(0, 0, width, height);
+    function renderHologram() {
+      tick += 0.024;
+      ctx.clearRect(0, 0, width, height);
 
       const centerX = width * 0.5;
-      const centerY = height * 0.41;
+      const centerY = height * 0.38;
 
-      // Ambient Glow
-      const bgGrad = ctx.createRadialGradient(centerX, centerY, 40, centerX, centerY, width * 0.58);
-      bgGrad.addColorStop(0, "rgba(0, 110, 220, 0.22)");
-      bgGrad.addColorStop(0.35, "rgba(0, 45, 120, 0.12)");
-      bgGrad.addColorStop(0.7, "rgba(2, 10, 30, 0.05)");
-      bgGrad.addColorStop(1, "rgba(0, 0, 0, 0)");
-      ctx.fillStyle = bgGrad;
-      ctx.fillRect(0, 0, width, height);
-
-      let breathSpeed = 0.8, coreGlowMult = 1.0, waveAmp = 1.0, waveSpeed = 0.8;
-      if (currentState === 'LISTENING') {
-        breathSpeed = 1.4; coreGlowMult = 1.5; waveAmp = 1.5; waveSpeed = 1.4;
-        if (Math.random() < 0.1) spawnRipple(2.4);
+      let breathSpeed = 1, coreIntensity = 1, waveMultiplier = 1;
+      if (currentState === 'IDLE') {
+        breathSpeed = 0.8; coreIntensity = 1.0; waveMultiplier = 1.0;
+      } else if (currentState === 'LISTENING') {
+        breathSpeed = 1.5; coreIntensity = 1.6; waveMultiplier = 2.0;
       } else if (currentState === 'THINKING') {
-        breathSpeed = 2.6; coreGlowMult = 3.2; waveAmp = 1.9; waveSpeed = 2.0;
+        breathSpeed = 2.8; coreIntensity = 3.2; waveMultiplier = 2.8;
       } else if (currentState === 'SPEAKING') {
-        breathSpeed = 1.7; coreGlowMult = 2.0; waveAmp = 2.5; waveSpeed = 2.4;
-        if (Math.random() < 0.08) spawnRipple(1.8);
+        breathSpeed = 1.8; coreIntensity = 2.0; waveMultiplier = 3.5;
       }
 
-      // Draw Rings
-      for (let i = ripples.length - 1; i >= 0; i--) {
-        const r = ripples[i];
-        r.radius += r.speed;
-        r.alpha = Math.max(0, 0.75 * (1 - r.radius / r.maxRadius));
-        if (r.alpha <= 0 || r.radius >= r.maxRadius) {
-          ripples.splice(i, 1);
-          continue;
-        }
-        ctx.beginPath();
-        ctx.arc(centerX, centerY - 25, r.radius, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(0, 240, 255, ${r.alpha})`;
-        ctx.lineWidth = 1.4;
-        ctx.stroke();
-      }
+      // Animate Waveform Bars
+      waveBars.forEach((bar, idx) => {
+        const offset = Math.sin(tick * 3 + idx * 0.35);
+        const h = Math.max(4, (12 + offset * 10) * waveMultiplier);
+        bar.style.height = `${h}px`;
+      });
 
-      const rotY = Math.sin(tick * 0.4 * breathSpeed) * 0.16;
-      const rotX = Math.cos(tick * 0.3 * breathSpeed) * 0.07;
-      const breath = Math.sin(tick * 1.3 * breathSpeed) * 4.0;
+      // 3D Rotations
+      const rotY = Math.sin(tick * 0.45 * breathSpeed) * 0.15;
+      const rotX = Math.cos(tick * 0.35 * breathSpeed) * 0.06;
+      const breath = Math.sin(tick * 1.4 * breathSpeed) * 4.0;
 
-      scanLaserY += 2.2 * scanDir;
-      if (scanLaserY > 180) scanDir = -1;
-      if (scanLaserY < -160) scanDir = 1;
-
-      for (let i = 0; i < points.length; i++) {
-        const p = points[i];
+      for (let i = 0; i < meshPoints.length; i++) {
+        const p = meshPoints[i];
         const x1 = p.baseX * Math.cos(rotY) + p.baseZ * Math.sin(rotY);
         const z1 = -p.baseX * Math.sin(rotY) + p.baseZ * Math.cos(rotY);
         const y1 = (p.baseY + breath) * Math.cos(rotX) - z1 * Math.sin(rotX);
@@ -371,19 +583,20 @@ async def get_dashboard():
         p.z = z2;
       }
 
-      // Additive Hologram Blending
+      // Additive Glow
       ctx.globalCompositeOperation = 'lighter';
-      ctx.lineWidth = 0.6;
 
-      for (let i = 0; i < points.length; i += 3) {
-        const p1 = points[i];
+      // Draw Wireframe Mesh
+      ctx.lineWidth = 0.5;
+      for (let i = 0; i < meshPoints.length; i += 3) {
+        const p1 = meshPoints[i];
         for (let k = 0; k < p1.connections.length; k++) {
-          const p2 = points[p1.connections[k]];
+          const p2 = meshPoints[p1.connections[k]];
           if (!p2) continue;
-          const depthAlpha = Math.max(0.04, Math.min(0.28, (p1.z + 100) / 200));
-          ctx.strokeStyle = p1.layer === 'brain'
-            ? `rgba(255, 180, 20, ${depthAlpha * coreGlowMult * 0.8})`
-            : `rgba(0, 240, 255, ${depthAlpha * 0.5})`;
+          const depthAlpha = Math.max(0.03, Math.min(0.24, (p1.z + 100) / 200));
+          ctx.strokeStyle = p1.isCore
+            ? `rgba(232, 121, 249, ${depthAlpha * coreIntensity})`
+            : `rgba(0, 240, 255, ${depthAlpha * 0.6})`;
           ctx.beginPath();
           ctx.moveTo(p1.x, p1.y);
           ctx.lineTo(p2.x, p2.y);
@@ -391,75 +604,40 @@ async def get_dashboard():
         }
       }
 
-      for (let i = 0; i < points.length; i++) {
-        const p = points[i];
+      // Draw Particles
+      for (let i = 0; i < meshPoints.length; i++) {
+        const p = meshPoints[i];
         const depth = (p.z + 120) / 240;
         const depthScale = Math.max(0.4, Math.min(1.4, depth));
         const shimmer = Math.sin(tick * 3.5 + i * 0.1) * 0.3 + 0.7;
-        const scanDist = Math.abs(p.baseY - scanLaserY);
-        const scanBoost = scanDist < 18 ? (1 - scanDist / 18) * 1.8 : 0;
 
-        if (p.layer === 'brain') {
-          const alpha = Math.min(1, Math.max(0.2, depth * shimmer * coreGlowMult * 0.9 + scanBoost));
+        if (p.isCore) {
+          const alpha = Math.min(1, Math.max(0.2, depth * shimmer * coreIntensity));
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size * depthScale * (coreGlowMult > 1.8 ? 1.3 : 1), 0, Math.PI * 2);
-          ctx.fillStyle = p.colorType === 'white' ? `rgba(255, 245, 210, ${alpha})` : `rgba(255, 170, 0, ${alpha})`;
-          ctx.shadowColor = '#ffaa00';
-          ctx.shadowBlur = 10 * coreGlowMult;
+          ctx.arc(p.x, p.y, p.size * depthScale * (coreIntensity > 1.8 ? 1.3 : 1), 0, Math.PI * 2);
+          ctx.fillStyle = `${p.color}${alpha})`;
+          ctx.shadowColor = '#e879f9';
+          ctx.shadowBlur = 10 * coreIntensity;
           ctx.fill();
           ctx.shadowBlur = 0;
         } else {
-          const alpha = Math.min(1, Math.max(0.12, depth * shimmer * 0.85 + scanBoost));
+          const alpha = Math.min(1, Math.max(0.12, depth * shimmer * 0.85));
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.size * depthScale, 0, Math.PI * 2);
-          ctx.fillStyle = p.colorType === 'azure' ? `rgba(0, 160, 255, ${alpha})` : `rgba(0, 240, 255, ${alpha})`;
-          ctx.shadowColor = '#00f0ff';
-          ctx.shadowBlur = scanBoost > 0.5 ? 8 : 2;
+          ctx.fillStyle = `${p.color}${alpha})`;
           ctx.fill();
-          ctx.shadowBlur = 0;
         }
       }
 
-      // Terrain Waves
       ctx.globalCompositeOperation = 'source-over';
-      const terrainBaseY = height * 0.76;
-      const waveConfigs = [
-        { stroke: 'rgba(0, 240, 255, 0.85)', fill: 'rgba(0, 200, 255, 0.04)', speed: 1.0, freq: 0.0032, amp: 30 },
-        { stroke: 'rgba(255, 180, 0, 0.9)', fill: 'rgba(255, 170, 0, 0.03)', speed: -0.75, freq: 0.0048, amp: 40 },
-        { stroke: 'rgba(0, 160, 255, 0.7)', fill: 'rgba(0, 120, 255, 0.03)', speed: 1.3, freq: 0.0028, amp: 25 },
-        { stroke: 'rgba(255, 215, 60, 0.8)', fill: 'rgba(255, 200, 50, 0.02)', speed: -1.1, freq: 0.0055, amp: 48 },
-      ];
-
-      for (let w = 0; w < 4; w++) {
-        const cfg = waveConfigs[w];
-        const offset = w * 24;
-        const curSpeed = cfg.speed * waveSpeed;
-        const curAmp = cfg.amp * waveAmp;
-
-        ctx.beginPath();
-        ctx.moveTo(0, height);
-        ctx.lineTo(0, terrainBaseY + offset);
-
-        for (let x = 0; x <= width; x += 12) {
-          const y = terrainBaseY + offset + Math.sin(x * cfg.freq + tick * curSpeed + w * 1.5) * curAmp + Math.cos(x * cfg.freq * 0.6 - tick * 0.8) * (curAmp * 0.35);
-          ctx.lineTo(x, y);
-        }
-
-        ctx.lineTo(width, height);
-        ctx.closePath();
-        ctx.fillStyle = cfg.fill;
-        ctx.fill();
-        ctx.strokeStyle = cfg.stroke;
-        ctx.lineWidth = 1.8;
-        ctx.stroke();
-      }
-
-      requestAnimationFrame(render);
+      requestAnimationFrame(renderHologram);
     }
-    render();
+    renderHologram();
 
-    const form = document.getElementById('chatForm');
+    // Form Submit Handler
+    const form = document.getElementById('agentForm');
     const input = document.getElementById('userInput');
+    const caption = document.getElementById('captionText');
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -468,7 +646,7 @@ async def get_dashboard():
 
       input.value = '';
       setAgentState('THINKING');
-      captionText.innerText = 'HERMES-PRIME: Query routed to Groq 120B neural reasoning matrix...';
+      caption.innerText = '"' + msg + '" — Processing neural query with Groq 120B...';
 
       try {
         const res = await fetch('/api/chat', {
@@ -477,17 +655,17 @@ async def get_dashboard():
           body: JSON.stringify({ message: msg })
         });
         const data = await res.json();
-        const reply = data.reply || 'Execution complete.';
+        const reply = data.reply || 'Execution completed.';
 
         setAgentState('SPEAKING');
-        captionText.innerText = 'HERMES-PRIME: ' + reply;
+        caption.innerText = '"' + reply + '"';
 
         setTimeout(() => {
           setAgentState('IDLE');
-        }, 8000);
+        }, 7500);
       } catch (err) {
         setAgentState('IDLE');
-        captionText.innerText = '⚠️ Error: ' + err;
+        caption.innerText = '⚠️ Error: ' + err;
       }
     });
   </script>
